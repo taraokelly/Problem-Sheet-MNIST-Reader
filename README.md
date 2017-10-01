@@ -4,6 +4,7 @@ Save your work as a Python file, or a collection of Python files.
 Please them in a single repository on [GitHub](https://github.com/), complete with a README.
 The files are in a bespoke format, as described on the [website](http://yann.lecun.com/exdb/mnist/).
 
+_Please note: the files containing the [MNIST](http://yann.lecun.com/exdb/mnist/) data are to be placed in a folder in the main directory called "data" and the file names are not to be changed._**
 
 ## 1. Read the data files
 Download the image and label files. Have Python decompress and read them byte by byte into appropriate data structures in memory.
@@ -13,7 +14,7 @@ Download the image and label files. Have Python decompress and read them byte by
 Output the third image in the training set to the console.
 Do this by representing any pixel value less than 128 as a full stop and any other pixel value as a hash symbol.
 
-![alt text](https://github.com/taraokelly/Problem-Sheet-MNIST-Reader/tree/master/img/out_console.png "2nd Training Image")
+![alt text](https://github.com/taraokelly/Problem-Sheet-MNIST-Reader/blob/master/img/out_console.PNG "2nd Training Image")
 
 ## 3. Output the image files as PNGs
 Use Python to output the image files as PNGs, saving them in a subfolder in your repository.

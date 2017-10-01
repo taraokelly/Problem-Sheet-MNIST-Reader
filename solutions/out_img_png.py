@@ -7,19 +7,28 @@
 # https://docs.python.org/3/library/gzip.html
 # reads and writes gzip-format files, automatically compressing or decompressing the data so that it looks like an ordinary file object.
 import gzip
+from PIL import Image
+import numpy as np
 
 def main():
+    esc = False
     train_labels= read_labels_from_file('../data/train-labels-idx1-ubyte.gz')
     test_labels= read_labels_from_file('../data/t10k-labels-idx1-ubyte.gz')
     train_images= read_images_from_file('../data/train-images-idx3-ubyte.gz')
     test_images= read_images_from_file('../data/t10k-images-idx3-ubyte.gz')
 
-    for row in train_images[1]:
-        for col in row:
-            # print . or # then a space
-            print('.' if col <= 127 else '#', end='')
-        # newline and the end of row
-        print()
+    while not esc:
+        img_num = int(input("\n[Enter -1 to ESC]\nEnter img number you wish to save:\n"))
+        if(img_num == -1):
+            esc = True
+        elif(img_num >= len(train_images) or img_num < 0):
+            print("Invalid number.")
+        else:
+            img = Image.fromarray(np.array(train_images[img_num]))
+            img = img.convert('RGB')
+            img_filename = "../img/"+str(img_num).zfill(5)+"-"+str(train_labels[img_num])+".png"
+            img.save(img_filename)
+    print("Goodbye!")
 
 def read_labels_from_file(filename):
     with gzip.open(filename,'rb') as f:
