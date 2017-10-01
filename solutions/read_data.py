@@ -1,3 +1,6 @@
+# https://docs.python.org/3/library/gzip.html
+# reads and writes gzip-format files, automatically compressing or decompressing the data 
+# so that it looks like an ordinary file object
 import gzip
 
 def main():
