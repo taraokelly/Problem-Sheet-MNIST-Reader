@@ -1,6 +1,11 @@
+# Tara O'Kelly - G00322214
+# Emerging Technologies, Year 4, Software Development, GMIT.
+
+# Problem set: Read the MNIST data files
+# 1. Download the image and label files. Have Python decompress and read them byte by byte into appropriate data structures in memory.
+
 # https://docs.python.org/3/library/gzip.html
-# reads and writes gzip-format files, automatically compressing or decompressing the data 
-# so that it looks like an ordinary file object
+# reads and writes gzip-format files, automatically compressing or decompressing the data so that it looks like an ordinary file object.
 import gzip
 
 def main():
