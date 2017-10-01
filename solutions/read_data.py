@@ -22,6 +22,7 @@ def read_labels_from_file(filename):
         magic = int.from_bytes(magic, 'big')
         print("Magic: ", magic)
 
+        # read in number of labels
         nolab = f.read(4)
         nolab = int.from_bytes(nolab, 'big')
         print("Labels: ", nolab)
@@ -39,19 +40,25 @@ def read_images_from_file(filename):
         magic = int.from_bytes(magic, 'big')
         print("Magic: ", magic)
 
+        # read in number of images
         noimg = f.read(4)
         noimg = int.from_bytes(noimg, 'big')
         print("Images: ", noimg)
 
+        # read in number of rows
         norow = f.read(4)
         norow = int.from_bytes(norow, 'big')
         print("Rows: ", norow)
 
+        # read in number of columns
         nocol = f.read(4)
         nocol = int.from_bytes(nocol, 'big')
         print("Columns: ", nocol)
 
         images = []
+
+        # use the number of images, row and columns to create an array of images, 
+        # reading in one byte at a time and converting it to an int
         for i in range(noimg):
             rows = []
             for r in range(norow):
