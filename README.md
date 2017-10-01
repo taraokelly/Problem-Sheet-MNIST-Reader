@@ -13,6 +13,7 @@ Download the image and label files. Have Python decompress and read them byte by
 Output the third image in the training set to the console.
 Do this by representing any pixel value less than 128 as a full stop and any other pixel value as a hash symbol.
 
+![2nd Training Image](img/out_img_console.png)
 
 ## 3. Output the image files as PNGs
 Use Python to output the image files as PNGs, saving them in a subfolder in your repository.
