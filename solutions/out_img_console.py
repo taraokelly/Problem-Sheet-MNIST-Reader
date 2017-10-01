@@ -9,31 +9,46 @@
 import gzip
 
 def main():
-    train_labels= read_labels_from_file('../data/train-labels-idx1-ubyte.gz')
-    test_labels= read_labels_from_file('../data/t10k-labels-idx1-ubyte.gz')
-    train_images= read_images_from_file('../data/train-images-idx3-ubyte.gz')
-    test_images= read_images_from_file('../data/t10k-images-idx3-ubyte.gz')
+    invalid = True
+    files = [['../data/t10k-labels-idx1-ubyte.gz', '../data/t10k-images-idx3-ubyte.gz', 'test'], ['../data/train-labels-idx1-ubyte.gz', '../data/train-images-idx3-ubyte.gz', 'train']]
 
-    for row in train_images[1]:
-        for col in row:
-            # print . or # then a space
-            print('.' if col <= 127 else '#', end='')
-        # newline and the end of row
-        print()
+    while invalid:
+        name_num = int(input("\n[Enter -1 to ESC]\nEnter:\n1 - for "+ files[0][2] +"\n2 - for "+ files[1][2] +"\n"))
+        if(name_num == 1 or name_num == 2):
+            print("Opening " + files[name_num-1][2] + "_images...")
+            menu(read_labels_from_file(files[name_num-1][0]),read_images_from_file(files[name_num-1][1]),files[name_num-1][2])
+        elif(name_num == -1):
+            invalid = False
+    print("Goodbye!")
+
+def menu(array_labels, array_images, name):
+    esc = False
+    while not esc:
+        img_num = int(input("\n[Enter -1 to ESC]\nEnter img number you wish to print to console:\n"))
+        if(img_num == -1):
+            esc = True
+        elif(img_num >= len(array_images) or img_num < 0):
+            print("Invalid number.")
+        else:
+            print("Label: ",array_labels[img_num])
+            for row in array_images[img_num]:
+                for col in row:
+                    # print . or # then a space
+                    print('.' if col <= 127 else '#', end='')
+                # newline and the end of row
+                print()
+    print("Exiting " + name + "_images...")
 
 def read_labels_from_file(filename):
     with gzip.open(filename,'rb') as f:
-
         # read first four bytes
         magic = f.read(4)
         magic = int.from_bytes(magic, 'big')
         print("Magic: ", magic)
-
         # read in number of labels
         nolab = f.read(4)
         nolab = int.from_bytes(nolab, 'big')
         print("Labels: ", nolab)
-
         # read in labels
         labels = [f.read(1) for i in range(nolab)]
         # convert array of bytes to array of strings
@@ -41,29 +56,24 @@ def read_labels_from_file(filename):
 
 def read_images_from_file(filename):
     with gzip.open(filename,'rb') as f:
-
         # read first four bytes
         magic = f.read(4)
         magic = int.from_bytes(magic, 'big')
         print("Magic: ", magic)
-
         # read in number of images
         noimg = f.read(4)
         noimg = int.from_bytes(noimg, 'big')
         print("Images: ", noimg)
-
         # read in number of rows
         norow = f.read(4)
         norow = int.from_bytes(norow, 'big')
         print("Rows: ", norow)
-
         # read in number of columns
         nocol = f.read(4)
         nocol = int.from_bytes(nocol, 'big')
         print("Columns: ", nocol)
 
         images = []
-
         # use the number of images, row and columns to create an array of images, 
         # reading in one byte at a time and converting it to an int
         for i in range(noimg):

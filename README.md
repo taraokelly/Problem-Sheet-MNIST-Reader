@@ -4,7 +4,7 @@ Save your work as a Python file, or a collection of Python files.
 Please them in a single repository on [GitHub](https://github.com/), complete with a README.
 The files are in a bespoke format, as described on the [website](http://yann.lecun.com/exdb/mnist/).
 
-_Please note: the files containing the [MNIST](http://yann.lecun.com/exdb/mnist/) data are to be placed in a folder in the main directory called "data" and the file names are not to be changed._**
+__Please note: the files containing the [MNIST](http://yann.lecun.com/exdb/mnist/) data are to be placed in a folder in the main directory called "data" and the file names are not to be changed.__
 
 ## 1. Read the data files
 Download the image and label files. Have Python decompress and read them byte by byte into appropriate data structures in memory.
@@ -24,7 +24,7 @@ Note the images are indexed from 0, so the five-thousandth image is indexed as 4
 See below for an example of it.
 Commit these image files to GitHub.
 
-![5000th training image labelled 2](../images/05000-2.png)
+![alt text](https://github.com/taraokelly/Problem-Sheet-MNIST-Reader/blob/master/img/train-00001-0.png "2nd Training Image")
 
 ---
 The leading Problem Sheet was assigned as a task to assist the practical learning of  Emerging Technologies, Software Development, GMIT.
