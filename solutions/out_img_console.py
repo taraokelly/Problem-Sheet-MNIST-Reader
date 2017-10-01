@@ -14,9 +14,11 @@ def main():
     train_images= read_images_from_file('../data/train-images-idx3-ubyte.gz')
     test_images= read_images_from_file('../data/t10k-images-idx3-ubyte.gz')
 
-    for row in train_images[4999]:
+    for row in train_images[1]:
         for col in row:
+            # print . or # then a space
             print('.' if col <= 127 else '#', end='')
+        # newline and the end of row
         print()
 
 def read_labels_from_file(filename):
