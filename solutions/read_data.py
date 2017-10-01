@@ -11,6 +11,8 @@ import gzip
 def main():
     train_labels= read_labels_from_file('../data/train-labels-idx1-ubyte.gz')
     test_labels= read_labels_from_file('../data/t10k-labels-idx1-ubyte.gz')
+    train_images= read_images_from_file('../data/train-images-idx3-ubyte.gz')
+    test_images= read_images_from_file('../data/t10k-images-idx3-ubyte.gz')
 
 def read_labels_from_file(filename):
     with gzip.open(filename,'rb') as f:
@@ -28,6 +30,37 @@ def read_labels_from_file(filename):
         labels = [f.read(1) for i in range(nolab)]
         # convert array of bytes to array of strings
         return [int.from_bytes(label,'big') for label in labels]
+
+def read_images_from_file(filename):
+    with gzip.open(filename,'rb') as f:
+
+        # read first four bytes
+        magic = f.read(4)
+        magic = int.from_bytes(magic, 'big')
+        print("Magic: ", magic)
+
+        noimg = f.read(4)
+        noimg = int.from_bytes(noimg, 'big')
+        print("Images: ", noimg)
+
+        norow = f.read(4)
+        norow = int.from_bytes(norow, 'big')
+        print("Rows: ", norow)
+
+        nocol = f.read(4)
+        nocol = int.from_bytes(nocol, 'big')
+        print("Columns: ", nocol)
+
+        images = []
+        for i in range(noimg):
+            rows = []
+            for r in range(norow):
+                cols = []
+                for c in range(nocol):
+                    cols.append(int.from_bytes(f.read(1),'big'))
+                rows.append(cols)
+            images.append(rows)
+        return images
 
 if __name__ == '__main__':
     main()
